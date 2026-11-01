@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Hemekonomi">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#EEF1F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#10162A" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAEGElEQVR4nO3dMW7UQBhA4QmioCaUUbZCkXIBaqqcgDtwAI7BAbhDDkHNEVCqSJSEmpLCknGcfYnXu+P5Z+Z9JQKvPX75Z5Qo4uzy+iZJ+7wqfQOKyziEjEPIOISMQ8g4hIxDyDiEjEPIOISMQ8g4hIxDyDiEjEPIOISMQ8g4hIxDyDiEjEPIOISMQ8g4hIxDyDiEjEPIOISMQ8g4hIxDyDiEjEPIOISMQ8g4hIxDyDiEjEPIOISMQ8g4hIxDyDiEjEPIOISMQ8g4hIxDyDiEjEPodb5Lf//6Jt/FNfXxy98cl804OTLdsWbyrfPZBv87pCMkk9xfftnPHHe3Vxe7Xe5P6dDFbnd3e5X1I/LGMd69fZzWuJ5Z+8h4IJ0ZnufX/f1mn9ikLb/MMk6OvVE7Qo6xd/XyDY8C3+ewj3W2X7cy3wSzj0MVWbHtzhwzHkEWKviFVPjb546Q55Vdn/I/W7EPUnxlim0rU24xM8WzGJSfHKMgK1JcnHUIFEeKtC6lhFqBENvKVLdbTKgsBrEmxyjgSmUV83mDxpGirlcOYZ80bhwp8KqdUORnDHfmmGn4CBI5i0HoyTGKv46HquKJ6ogjVbKaC9XyLNG3lakGtphashhUMzlGda3vVHV3Xl8cqcJVTnXec03bylRFW0yNWQyqnByj+Ose/w6fUXccKfbqR763JWrdVqYCbjG1ZzGofnKM4ryPOHdypHbiSDHeSoR7OJWm4kil301LZaQ2zhwzRY4gjWUxaG1yjLZ8W02WkRqOI231zlotIzW5rUxl3WIazmLQ8uQY5XiLzZeROokjnfpd9lBGan5bmTrJFtNJFoNeJsfomLfbVRmpwzjS2nfcWxmpzzjS4W+6wzJSV2eOmYVHkD6zGHQ6OUbPv/uey0jGkbiAzstIPW8rU7MtxiwGTo7/hiYsY2Qcj1jGlHEIGYeQcQgZh5BxCBmHkHEIGYeQcQgZh5BxCBmHkHEIGYeQcQgZh5BxCBmHkHEIGYeQcQgZxyN/Hn6XvoVAuv6lpr0pPP3Dt+fvNrmdcDqKY/VU6DaXZuNYmMKLr7nn6dJIHKdKYck/6SeXKuPIl8K6y7aay9nl9U2+q9/dXh1/kbIprLPlPb//9PP4i+wVbnLUmMJTbUyXvJMjvTQ82khhnZM8e76xkTaII0366DmFJQ5dn6xlpKxx/Ph2vuSvdZvCEgtz+fD5Icenb33mMIWDLDy7ZJI3jn1FZ2m8Zwsn9ApbnDlUKX8qK2QcQsYhZBxCxiFkHELGIWQcQsYhZBxCxiFkHELGIWQcQsYhZBxCxiFkHELGIWQcQsYhZBxCxiFkHELGIWQcQsYhZBxCxiFkHELGIWQcQsYhZBxCxiFkHELGIWQcQsYhZBxCxiFkHELGIWQcQsYh9A+5qbTZ/0/YZgAAAABJRU5ErkJggg==">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAEGElEQVR4nO3dMW7UQBhA4QmioCaUUbZCkXIBaqqcgDtwAI7BAbhDDkHNEVCqSJSEmpLCknGcfYnXu+P5Z+Z9JQKvPX75Z5Qo4uzy+iZJ+7wqfQOKyziEjEPIOISMQ8g4hIxDyDiEjEPIOISMQ8g4hIxDyDiEjEPIOISMQ8g4hIxDyDiEjEPIOISMQ8g4hIxDyDiEjEPIOISMQ8g4hIxDyDiEjEPIOISMQ8g4hIxDyDiEjEPIOISMQ8g4hIxDyDiEjEPIOISMQ8g4hIxDyDiEjEPodb5Lf//6Jt/FNfXxy98cl804OTLdsWbyrfPZBv87pCMkk9xfftnPHHe3Vxe7Xe5P6dDFbnd3e5X1I/LGMd69fZzWuJ5Z+8h4IJ0ZnufX/f1mn9ikLb/MMk6OvVE7Qo6xd/XyDY8C3+ewj3W2X7cy3wSzj0MVWbHtzhwzHkEWKviFVPjb546Q55Vdn/I/W7EPUnxlim0rU24xM8WzGJSfHKMgK1JcnHUIFEeKtC6lhFqBENvKVLdbTKgsBrEmxyjgSmUV83mDxpGirlcOYZ80bhwp8KqdUORnDHfmmGn4CBI5i0HoyTGKv46HquKJ6ogjVbKaC9XyLNG3lakGtphashhUMzlGda3vVHV3Xl8cqcJVTnXec03bylRFW0yNWQyqnByj+Ose/w6fUXccKfbqR763JWrdVqYCbjG1ZzGofnKM4ryPOHdypHbiSDHeSoR7OJWm4kil301LZaQ2zhwzRY4gjWUxaG1yjLZ8W02WkRqOI231zlotIzW5rUxl3WIazmLQ8uQY5XiLzZeROokjnfpd9lBGan5bmTrJFtNJFoNeJsfomLfbVRmpwzjS2nfcWxmpzzjS4W+6wzJSV2eOmYVHkD6zGHQ6OUbPv/uey0jGkbiAzstIPW8rU7MtxiwGTo7/hiYsY2Qcj1jGlHEIGYeQcQgZh5BxCBmHkHEIGYeQcQgZh5BxCBmHkHEIGYeQcQgZh5BxCBmHkHEIGYeQcQgZxyN/Hn6XvoVAuv6lpr0pPP3Dt+fvNrmdcDqKY/VU6DaXZuNYmMKLr7nn6dJIHKdKYck/6SeXKuPIl8K6y7aay9nl9U2+q9/dXh1/kbIprLPlPb//9PP4i+wVbnLUmMJTbUyXvJMjvTQ82khhnZM8e76xkTaII0366DmFJQ5dn6xlpKxx/Ph2vuSvdZvCEgtz+fD5Icenb33mMIWDLDy7ZJI3jn1FZ2m8Zwsn9ApbnDlUKX8qK2QcQsYhZBxCxiFkHELGIWQcQsYhZBxCxiFkHELGIWQcQsYhZBxCxiFkHELGIWQcQsYhZBxCxiFkHELGIWQcQsYhZBxCxiFkHELGIWQcQsYhZBxCxiFkHELGIWQcQsYhZBxCxiFkHELGIWQcQsYh9A+5qbTZ/0/YZgAAAABJRU5ErkJggg==">
+<title>Min hemekonomi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF1F7; --surface:#FFFFFF; --ink:#1E2A47; --muted:#56627D; --line:#D3D9E6;
+  --primary:#1E2A47; --on-primary:#FFFFFF;
+  --good:#1F7A50; --bad:#C62F2F;
+  --env-ink:#1E2A47; --env-bad:#B42318;
+  --seg-fixed:#1E2A47; --seg-env:#EDB93A; --seg-save:#4FB38C; --seg-free:#DCE1EC;
+  --e1:#F9D56E; --e2:#9ED9C6; --e3:#F4A6A6; --e4:#A9C7F2; --e5:#CDB4F0; --e6:#F7B884;
+  --display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#10162A; --surface:#1A2238; --ink:#E7ECF6; --muted:#9DA9C4; --line:#2E3854;
+    --primary:#E7ECF6; --on-primary:#10162A;
+    --good:#62D4A0; --bad:#FF8080;
+    --seg-fixed:#8EA6E0; --seg-env:#E3BE55; --seg-save:#5FBF9B; --seg-free:#2E3854;
+    --e1:#E6C25C; --e2:#86C6B1; --e3:#E29292; --e4:#93B3E2; --e5:#B79EDF; --e6:#E5A36F;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#10162A; --surface:#1A2238; --ink:#E7ECF6; --muted:#9DA9C4; --line:#2E3854;
+  --primary:#E7ECF6; --on-primary:#10162A;
+  --good:#62D4A0; --bad:#FF8080;
+  --seg-fixed:#8EA6E0; --seg-env:#E3BE55; --seg-save:#5FBF9B; --seg-free:#2E3854;
+  --e1:#E6C25C; --e2:#86C6B1; --e3:#E29292; --e4:#93B3E2; --e5:#B79EDF; --e6:#E5A36F;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 var(--body);-webkit-text-size-adjust:100%}
+.wrap{max-width:640px;margin:0 auto;padding:20px 18px 72px}
+h1,h2,h3{font-family:var(--display);line-height:1.15;margin:0}
+:focus-visible{outline:3px solid #4C7BE8;outline-offset:2px}
+button{font-family:var(--body)}
+a{color:inherit;text-decoration-thickness:2px;text-underline-offset:3px}
+
+.top{margin:10px 0 18px}
+h1{font-size:clamp(2.1rem,8vw,2.7rem);font-weight:800;letter-spacing:-0.025em}
+.tagline{margin:6px 0 0;color:var(--muted)}
+
+.plan{background:var(--surface);border-radius:14px;padding:18px;margin-bottom:16px}
+.plan h2{font-size:1.15rem;font-weight:700;margin-bottom:12px}
+.band{position:relative;display:flex;height:30px;border-radius:6px;overflow:hidden;background:var(--seg-free)}
+.band span{display:block;height:100%}
+.band .marker{position:absolute;top:0;bottom:0;width:3px;background:var(--bad)}
+.legend{list-style:none;margin:14px 0 0;padding:0}
+.legend li{display:grid;grid-template-columns:14px 1fr auto;gap:10px;align-items:center;padding:3px 0}
+.legend li.inc{border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:5px;font-weight:700}
+.legend b{font-variant-numeric:tabular-nums}
+.sw{width:14px;height:14px;border-radius:3px}
+.sw.free{background:var(--seg-free);box-shadow:inset 0 0 0 1px var(--muted)}
+.status{margin:12px 0 0;font-weight:700}
+.status.good{color:var(--good)}
+.status.bad{color:var(--bad)}
+
+.tabs{display:flex;gap:4px;background:var(--surface);border-radius:999px;padding:4px;margin-bottom:18px}
+.tabs button{flex:1;border:0;background:transparent;color:var(--ink);font-weight:700;font-size:1rem;padding:10px 8px;border-radius:999px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--primary);color:var(--on-primary)}
+
+.btn{font-weight:700;font-size:1rem;border-radius:10px;padding:12px 16px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
+.btn.wide{width:100%}
+
+.month{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.month h2{font-size:1.4rem;font-weight:800;letter-spacing:-0.01em}
+.icon-btn{width:42px;height:42px;flex:none;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:1.35rem;line-height:1;cursor:pointer}
+.perday{margin:0 0 4px}
+.perday-hint{margin:0 0 14px;color:var(--muted);font-size:.92rem}
+
+.envelopes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:0 0 26px}
+.env{position:relative;display:flex;flex-direction:column;gap:2px;min-height:152px;text-align:left;border:0;border-radius:6px;padding:38px 14px 14px;background:var(--c);color:var(--env-ink);cursor:pointer;box-shadow:inset 0 0 0 1px rgba(30,42,71,.08)}
+.env::before{content:"";position:absolute;left:0;right:0;top:0;height:32px;background:rgba(30,42,71,.13);clip-path:polygon(0 0,100% 0,50% 100%)}
+.env-name{font-weight:700;font-size:.95rem;overflow-wrap:anywhere}
+.env-left{margin-top:auto;font-family:var(--display);font-weight:800;font-size:1.6rem;letter-spacing:-0.01em;font-variant-numeric:tabular-nums}
+.env-of{font-size:.85rem}
+.env-bar{display:block;height:6px;border-radius:3px;background:rgba(30,42,71,.16);margin-top:8px;overflow:hidden}
+.env-bar span{display:block;height:100%;background:rgba(30,42,71,.68)}
+.env.over{box-shadow:inset 0 0 0 3px var(--env-bad)}
+.env.over .env-of{font-weight:700;color:var(--env-bad)}
+.env.over .env-bar span{background:var(--env-bad)}
+
+.list-title{font-size:1.15rem;font-weight:700;margin-bottom:10px}
+.buys{list-style:none;margin:0;padding:0;background:var(--surface);border-radius:14px}
+.buys li{display:grid;grid-template-columns:10px 1fr auto auto;gap:12px;align-items:center;padding:10px 8px 10px 14px;border-top:1px solid var(--line)}
+.buys li:first-child{border-top:0}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.buy-main{display:flex;flex-direction:column;min-width:0}
+.buy-main strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.buy-sub{font-size:.85rem;color:var(--muted)}
+.buy-amt{font-weight:700;font-variant-numeric:tabular-nums}
+.del{width:38px;height:38px;border-radius:50%;border:0;background:transparent;color:var(--muted);font-size:1.35rem;line-height:1;cursor:pointer}
+.del:hover{background:var(--bg);color:var(--bad)}
+.empty{margin:0;color:var(--muted);background:var(--surface);border-radius:14px;padding:16px}
+
+.group{background:var(--surface);border-radius:14px;padding:16px;margin-bottom:14px}
+.group-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.group h3{font-size:1.2rem;font-weight:700}
+.group-sum{font-weight:700;font-variant-numeric:tabular-nums}
+.hint{margin:4px 0 10px;color:var(--muted);font-size:.92rem}
+.rows{list-style:none;margin:0;padding:0}
+.rows li{display:grid;grid-template-columns:1fr 7.6em auto;gap:6px;align-items:center;padding:4px 0}
+input,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 10px;width:100%;min-width:0}
+.amt{position:relative}
+.amt input{text-align:right;padding-right:2.2em;font-variant-numeric:tabular-nums}
+.amt span{position:absolute;right:.7em;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.9rem;pointer-events:none}
+.add{margin-top:8px;width:100%;border:1px dashed var(--muted);background:transparent;color:var(--ink);font-weight:700;font-size:.95rem;border-radius:8px;padding:10px 12px;cursor:pointer}
+.reset{display:block;margin:24px auto 0;border:0;background:transparent;color:var(--muted);font-size:.92rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:8px}
+.reset.armed{color:var(--bad);font-weight:700}
+
+.tips{background:var(--surface);border-radius:14px;padding:4px 18px}
+.tips article{padding:14px 0;border-top:1px solid var(--line)}
+.tips article:first-child{border-top:0}
+.tips h3{font-size:1.08rem;font-weight:700;margin-bottom:4px}
+.tips p{margin:0}
+
+.foot{color:var(--muted);font-size:.85rem;margin-top:26px;text-align:center}
+
+dialog{border:0;padding:0;background:transparent;color:var(--ink);width:100%;max-width:none;margin:auto auto 0}
+dialog::backdrop{background:rgba(8,12,26,.55)}
+.sheet{background:var(--surface);border-radius:18px 18px 0 0;padding:20px 20px calc(20px + env(safe-area-inset-bottom,0px));max-width:560px;margin:0 auto}
+.sheet h3{font-size:1.3rem;font-weight:800;margin-bottom:14px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;font-weight:700;font-size:.95rem}
+.field input,.field select{font-weight:400}
+#buyAmount{font-family:var(--display);font-weight:700;font-size:1.6rem}
+.err{color:var(--bad);font-size:.9rem;font-weight:400;min-height:1.3em}
+.actions{display:flex;gap:10px;margin-top:6px}
+.actions .btn{flex:1}
+@media (min-width:600px){
+  dialog{margin:auto}
+  .sheet{border-radius:18px;padding-bottom:20px}
+}
+
+.toast-wrap{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;padding:0 16px calc(16px + env(safe-area-inset-bottom,0px));pointer-events:none;z-index:20}
+.toast{background:var(--primary);color:var(--on-primary);padding:10px 18px;border-radius:999px;font-weight:700;opacity:0;transform:translateY(8px)}
+.toast.show{opacity:1;transform:none}
+@media (prefers-reduced-motion: no-preference){
+  .toast{transition:opacity .2s, transform .2s}
+  .env{transition:transform .12s}
+  .env:active{transform:scale(.98)}
+}
+[hidden]{display:none !important}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <h1>Min hemekonomi</h1>
+    <p class="tagline">Koll på pengarna i ditt första egna boende.</p>
+  </header>
+
+  <section class="plan" aria-labelledby="planTitle">
+    <h2 id="planTitle">Så fördelas pengarna varje månad</h2>
+    <div class="band" id="band" role="img"></div>
+    <ul class="legend">
+      <li class="inc"><span></span><span>Inkomster</span><b id="lgInc">0 kr</b></li>
+      <li><i class="sw" style="background:var(--seg-fixed)"></i><span>Fasta räkningar</span><b id="lgFix">0 kr</b></li>
+      <li><i class="sw" style="background:var(--seg-env)"></i><span>Kuvert</span><b id="lgEnv">0 kr</b></li>
+      <li><i class="sw" style="background:var(--seg-save)"></i><span>Sparande</span><b id="lgSav">0 kr</b></li>
+      <li><i class="sw free"></i><span id="lgFreeLabel">Inte planerat än</span><b id="lgFree">0 kr</b></li>
+    </ul>
+    <p class="status" id="status" aria-live="polite"></p>
+  </section>
+
+  <div class="tabs" role="tablist" aria-label="Vyer">
+    <button role="tab" id="tab-kuvert" data-tab="kuvert" aria-controls="view-kuvert" aria-selected="true">Kuvert</button>
+    <button role="tab" id="tab-budget" data-tab="budget" aria-controls="view-budget" aria-selected="false" tabindex="-1">Budget</button>
+    <button role="tab" id="tab-tips" data-tab="tips" aria-controls="view-tips" aria-selected="false" tabindex="-1">Tips</button>
+  </div>
+
+  <section id="view-kuvert" role="tabpanel" aria-labelledby="tab-kuvert">
+    <div class="month">
+      <button class="icon-btn" id="prevMonth" type="button" aria-label="Föregående månad">‹</button>
+      <h2 id="monthLabel"></h2>
+      <button class="icon-btn" id="nextMonth" type="button" aria-label="Nästa månad">›</button>
+    </div>
+    <p class="perday" id="perday"></p>
+    <p class="perday-hint" id="perdayHint">Tryck på ett kuvert för att registrera ett köp.</p>
+    <div class="envelopes" id="envGrid"></div>
+    <h3 class="list-title" id="buysTitle"></h3>
+    <div id="buysHost"></div>
+  </section>
+
+  <section id="view-budget" role="tabpanel" aria-labelledby="tab-budget" hidden>
+    <div id="groups"></div>
+    <button class="reset" id="resetBtn" type="button">Börja om från början</button>
+  </section>
+
+  <section id="view-tips" role="tabpanel" aria-labelledby="tab-tips" hidden>
+    <div class="tips">
+      <article>
+        <h3>Betala räkningarna först</h3>
+        <p>Lägg hyra och andra fasta räkningar på autogiro eller e-faktura så att de dras strax efter lönedagen. Då är det viktigaste betalt innan du handlar något annat.</p>
+      </article>
+      <article>
+        <h3>Bygg en buffert</h3>
+        <p>Till slut går något sönder, mobilen, cykeln eller en tand. Sikta på att ha minst en månads utgifter på ett eget sparkonto som du inte rör i vardagen.</p>
+      </article>
+      <article>
+        <h3>Skaffa hemförsäkring</h3>
+        <p>Den skyddar dina saker vid till exempel stöld, brand och vattenskada, och brukar ha ansvarsskydd om du råkar orsaka skada hos någon annan. För en liten lägenhet kostar den oftast inte mycket per månad.</p>
+      </article>
+      <article>
+        <h3>Välj elavtal själv</h3>
+        <p>Om elen inte ingår i hyran och du inte väljer avtal när du flyttar in, får du ett anvisat avtal som ofta är dyrare. Jämför priser på <a href="https://www.elpriskollen.se/" target="_blank" rel="noopener">Elpriskollen</a>.</p>
+      </article>
+      <article>
+        <h3>Rensa bland abonnemangen</h3>
+        <p>Gå igenom streaming, appar och gym några gånger om året. Tre tjänster för 129 kr i månaden blir nästan 4 700 kr på ett år.</p>
+      </article>
+      <article>
+        <h3>Handla mat med en plan</h3>
+        <p>Skriv inköpslista, planera några middagar i taget och laga dubbelt så att det blir lunchlåda till nästa dag.</p>
+      </article>
+      <article>
+        <h3>Om pengarna inte räcker</h3>
+        <p>Hör av dig till den du är skyldig innan förfallodagen och fråga om en avbetalningsplan. Kommunens budget- och skuldrådgivning hjälper dig gratis. Betala aldrig räkningar med snabblån eller ”köp nu, betala senare”.</p>
+      </article>
+      <article>
+        <h3>Vad brukar saker kosta?</h3>
+        <p>Konsumentverket räknar varje år ut vad mat, hygien och andra vardagsutgifter brukar kosta. Bra att jämföra med när du sätter summor i kuverten: <a href="https://www.konsumentverket.se/" target="_blank" rel="noopener">konsumentverket.se</a>.</p>
+      </article>
+    </div>
+  </section>
+
+  <p class="foot" id="saveNote">Allt sparas automatiskt i den här webbläsaren och syns bara för dig.</p>
+</main>
+
+<dialog id="buyDialog" aria-labelledby="buyTitle">
+  <form class="sheet" id="buyForm" novalidate>
+    <h3 id="buyTitle">Registrera ett köp</h3>
+    <label class="field">Belopp i kronor
+      <input id="buyAmount" type="text" inputmode="decimal" autocomplete="off" placeholder="0">
+      <span class="err" id="buyErr" aria-live="polite"></span>
+    </label>
+    <label class="field">Från kuvert
+      <select id="buyEnv"></select>
+    </label>
+    <label class="field">Vad köpte du? (valfritt)
+      <input id="buyNote" type="text" maxlength="60" autocomplete="off" placeholder="Till exempel veckohandling">
+    </label>
+    <label class="field">Datum
+      <input id="buyDate" type="date">
+    </label>
+    <div class="actions">
+      <button type="button" class="btn" id="buyCancel">Avbryt</button>
+      <button type="submit" class="btn primary">Spara köpet</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast-wrap" aria-live="polite"><div class="toast" id="toast"></div></div>
+
+<script>
+(function(){
+'use strict';
+var KEY='min-hemekonomi:v1';
+var NCOL=6;
+function $(s){return document.querySelector(s);}
+function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
+function uid(){return Math.random().toString(36).slice(2,9)+Date.now().toString(36).slice(-5);}
+var nf=new Intl.NumberFormat('sv-SE',{maximumFractionDigits:0});
+function kr(n){return nf.format(Math.round(n))+'\u00a0kr';}
+function num(v){var n=parseFloat(String(v==null?'':v).replace(/[\s\u00a0]/g,'').replace(',','.'));return isFinite(n)&&n>0?n:0;}
+function pad(n){return String(n).padStart(2,'0');}
+function ymOf(d){return d.getFullYear()+'-'+pad(d.getMonth()+1);}
+function dayStr(d){return ymOf(d)+'-'+pad(d.getDate());}
+function ymDate(ym){return new Date(+ym.slice(0,4),+ym.slice(5,7)-1,1);}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+function monthYear(ym){return cap(new Intl.DateTimeFormat('sv-SE',{month:'long',year:'numeric'}).format(ymDate(ym)));}
+function monthOnly(ym){return new Intl.DateTimeFormat('sv-SE',{month:'long'}).format(ymDate(ym));}
+function shortDate(ds){return new Intl.DateTimeFormat('sv-SE',{day:'numeric',month:'short'}).format(new Date(+ds.slice(0,4),+ds.slice(5,7)-1,+ds.slice(8,10)));}
+function sum(a){return a.reduce(function(s,x){return s+(+x.amount||0);},0);}
+
+function row(name){return {id:uid(),name:name,amount:0};}
+function defaults(){
+  return {v:1,
+    income:[row('Lön efter skatt'),row('CSN / studiemedel'),row('Bostadsbidrag')],
+    fixed:[row('Hyra'),row('El'),row('Hemförsäkring'),row('Internet'),row('Mobil'),row('Busskort / resor'),row('Streaming och appar')],
+    envelopes:['Mat','Hygien och städ','Nöje och ute','Kläder','Övrigt'].map(function(n,i){return {id:uid(),name:n,amount:0,color:i%NCOL};}),
+    savings:[row('Buffert')],
+    purchases:[],updatedAt:0};
+}
+function normalize(d){
+  if(!d||typeof d!=='object')return null;
+  try{d=JSON.parse(JSON.stringify(d));}catch(e){return null;}
+  function arr(a,withColor){
+    return Array.isArray(a)?a.filter(function(x){return x&&typeof x==='object';}).map(function(x,i){
+      var r={id:String(x.id||uid()),name:String(x.name==null?'':x.name).slice(0,40),amount:num(x.amount)};
+      if(withColor)r.color=((parseInt(x.color,10)||0)%NCOL+NCOL)%NCOL;
+      return r;
+    }):[];
+  }
+  return {v:1,income:arr(d.income),fixed:arr(d.fixed),envelopes:arr(d.envelopes,true),savings:arr(d.savings),
+    purchases:Array.isArray(d.purchases)?d.purchases.filter(function(p){return p&&/^\d{4}-\d{2}-\d{2}$/.test(p.date);}).map(function(p){
+      return {id:String(p.id||uid()),env:String(p.env||''),amount:num(p.amount),note:String(p.note||'').slice(0,60),date:p.date};
+    }):[],
+    updatedAt:+d.updatedAt||0};
+}
+
+function loadLocal(){try{var raw=localStorage.getItem(KEY);return raw?JSON.parse(raw):null;}catch(e){return null;}}
+function saveLocal(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+
+var state=normalize(loadLocal())||defaults();
+var viewYM=ymOf(new Date());
+var tab=sum(state.income)>0?'kuvert':'budget';
+var dbRef=null,saveTimer=null,saving=false,again=false;
+
+function scheduleSave(){
+  state.updatedAt=Date.now();
+  saveLocal();
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(pushDb,800);
+}
+function pushDb(){
+  if(!dbRef)return;
+  if(saving){again=true;return;}
+  saving=true;
+  dbRef.set(JSON.parse(JSON.stringify(state))).catch(function(){dbRef=null;updateFoot();}).then(function(){
+    saving=false;
+    if(again){again=false;pushDb();}
+  });
+}
+function updateFoot(){
+  $('#saveNote').textContent=dbRef
+    ?'Allt sparas automatiskt på ditt konto och syns bara för dig.'
+    :'Allt sparas automatiskt i den här webbläsaren och syns bara för dig.';
+}
+
+var toastTimer=null;
+function toast(msg){
+  var t=$('#toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(toastTimer);toastTimer=setTimeout(function(){t.classList.remove('show');},2200);
+}
+
+function spent(envId,ym){
+  return state.purchases.reduce(function(s,p){return p.env===envId&&p.date.slice(0,7)===ym?s+p.amount:s;},0);
+}
+function envById(id){for(var i=0;i<state.envelopes.length;i++){if(state.envelopes[i].id===id)return state.envelopes[i];}return null;}
+
+function renderSummary(){
+  var inc=sum(state.income),fix=sum(state.fixed),env=sum(state.envelopes),sav=sum(state.savings);
+  var planned=fix+env+sav,free=Math.round(inc-planned),base=Math.max(inc,planned);
+  var band=$('#band');band.textContent='';
+  function pct(v){return base>0?v/base*100:0;}
+  [['fixed',fix],['env',env],['save',sav]].forEach(function(p){
+    if(p[1]>0){var s=el('span');s.style.width=pct(p[1])+'%';s.style.background='var(--seg-'+p[0]+')';band.appendChild(s);}
+  });
+  if(free<0&&inc>0){var m=el('i','marker');m.style.left='calc('+pct(inc)+'% - 1.5px)';band.appendChild(m);}
+  band.setAttribute('aria-label','Inkomster '+kr(inc)+'. Fasta räkningar '+kr(fix)+', kuvert '+kr(env)+', sparande '+kr(sav)+'.');
+  $('#lgInc').textContent=kr(inc);$('#lgFix').textContent=kr(fix);$('#lgEnv').textContent=kr(env);$('#lgSav').textContent=kr(sav);
+  $('#lgFreeLabel').textContent=free>=0?'Inte planerat än':'Saknas';
+  $('#lgFree').textContent=free>=0?kr(free):'\u2212'+kr(-free);
+  var st=$('#status');st.className='status';
+  if(inc===0&&planned===0){st.textContent='Börja med att fylla i vad du får in och vad du betalar varje månad under Budget.';}
+  else if(inc===0){st.textContent='Fyll i dina inkomster under Budget, så ser du om pengarna räcker.';}
+  else if(free>0){st.textContent=kr(free)+' har ingen plan än. Lägg dem i ett kuvert eller i sparandet.';}
+  else if(free===0){st.textContent='Varje krona har en plan. Snyggt jobbat.';st.classList.add('good');}
+  else{st.textContent='Du har planerat '+kr(-free)+' mer än du får in. Sänk ett kuvert eller en räkning under Budget.';st.classList.add('bad');}
+  document.querySelectorAll('[data-sum]').forEach(function(e){e.textContent=kr(sum(state[e.getAttribute('data-sum')]));});
+}
+
+function renderEnvelopes(){
+  var ym=viewYM,nowYM=ymOf(new Date());
+  $('#monthLabel').textContent=monthYear(ym);
+  var grid=$('#envGrid');grid.textContent='';
+  var totB=0,totS=0;
+  state.envelopes.forEach(function(e){
+    var sp=spent(e.id,ym),left=e.amount-sp;totB+=e.amount;totS+=sp;
+    var b=el('button','env'+(left<0?' over':''));b.type='button';
+    b.style.setProperty('--c','var(--e'+(e.color+1)+')');
+    b.setAttribute('data-env',e.id);
+    var name=e.name||'Namnlöst kuvert',big,of,label;
+    if(e.amount===0&&sp===0){big=kr(0);of='Ingen summa satt än';label=name+': ingen summa satt än.';}
+    else if(left>=0){big=kr(left);of='kvar av '+kr(e.amount);label=name+': '+kr(left)+' kvar av '+kr(e.amount)+'.';}
+    else{big='\u2212'+kr(-left);of='över budget';label=name+': '+kr(-left)+' över budget på '+kr(e.amount)+'.';}
+    b.setAttribute('aria-label',label+' Registrera ett köp.');
+    b.appendChild(el('span','env-name',name));
+    b.appendChild(el('span','env-left',big));
+    b.appendChild(el('span','env-of',of));
+    var bar=el('span','env-bar'),fill=el('span');
+    fill.style.width=(e.amount>0?Math.min(100,sp/e.amount*100):(sp>0?100:0))+'%';
+    bar.appendChild(fill);b.appendChild(bar);
+    grid.appendChild(b);
+  });
+
+  var left=totB-totS,p,mo=monthOnly(ym);
+  if(!state.envelopes.length){p='Du har inga kuvert än. Skapa dem under Budget.';}
+  else if(totB===0){p='Ge kuverten en summa under Budget, så ser du hur mycket som finns kvar.';}
+  else if(ym===nowYM){
+    var now=new Date(),last=new Date(now.getFullYear(),now.getMonth()+1,0).getDate(),days=last-now.getDate()+1;
+    p=left>0?(days===1?'Kvar i kuverten: '+kr(left)+'. I dag är månadens sista dag.':'Kvar i kuverten: '+kr(left)+'. Det blir ungefär '+kr(left/days)+' om dagen till och med den '+last+' '+mo+'.')
+            :'Kuverten är tomma för den här månaden.';
+  }
+  else if(ym<nowYM){p=left>=0?'I '+mo+' blev '+kr(left)+' kvar i kuverten.':'I '+mo+' gick kuverten '+kr(-left)+' över budget.';}
+  else{p='Kuverten har '+kr(totB)+' att använda i '+mo+'.';}
+  $('#perday').textContent=p;
+  $('#perdayHint').hidden=!state.envelopes.length;
+
+  $('#buysTitle').textContent='Köp i '+mo;
+  var host=$('#buysHost');host.textContent='';
+  var list=state.purchases.map(function(p,i){return [p,i];}).filter(function(x){return x[0].date.slice(0,7)===ym;})
+    .sort(function(a,b){return b[0].date.localeCompare(a[0].date)||b[1]-a[1];});
+  if(!list.length){host.appendChild(el('p','empty','Inga köp registrerade i '+mo+' än.'));return;}
+  var ul=el('ul','buys');
+  list.forEach(function(x){
+    var p=x[0],env=envById(p.env),envName=env?(env.name||'Namnlöst kuvert'):'Borttaget kuvert';
+    var li=el('li');
+    var dot=el('span','dot');dot.style.setProperty('--c',env?'var(--e'+(env.color+1)+')':'var(--line)');
+    var main=el('span','buy-main');
+    main.appendChild(el('strong',null,p.note||envName));
+    main.appendChild(el('span','buy-sub',p.note?shortDate(p.date)+' från '+envName:shortDate(p.date)));
+    var del=el('button','del','\u00d7');del.type='button';del.setAttribute('data-del-buy',p.id);
+    del.setAttribute('aria-label','Ta bort köpet '+(p.note||envName)+', '+kr(p.amount));
+    li.appendChild(dot);li.appendChild(main);li.appendChild(el('span','buy-amt',kr(p.amount)));li.appendChild(del);
+    ul.appendChild(li);
+  });
+  host.appendChild(ul);
+}
+
+var GROUPS=[
+  ['income','Inkomster','Pengar som kommer in varje månad, efter skatt.','Lägg till inkomst','Ny inkomst'],
+  ['fixed','Fasta räkningar','Kostar ungefär lika mycket varje månad. Lägg dem gärna på autogiro.','Lägg till räkning','Ny räkning'],
+  ['envelopes','Kuvert','Pengar du styr själv. Varje kuvert får en summa per månad, och köpen du registrerar dras från den.','Lägg till kuvert','Nytt kuvert'],
+  ['savings','Sparande','Flytta det här till ett sparkonto samma dag som pengarna kommer in.','Lägg till sparmål','Nytt sparmål']
+];
+function rowEl(key,r,ph){
+  var li=el('li');li.setAttribute('data-id',r.id);
+  var nm=el('input','nm');nm.type='text';nm.value=r.name;nm.maxLength=40;nm.placeholder=ph;nm.setAttribute('aria-label','Namn');
+  if(key==='envelopes')nm.style.boxShadow='inset 6px 0 0 var(--e'+(r.color+1)+')';
+  var wrap=el('span','amt');
+  var am=el('input','am');am.type='text';am.inputMode='decimal';am.autocomplete='off';am.placeholder='0';
+  am.value=r.amount?String(r.amount).replace('.',','):'';
+  am.setAttribute('aria-label','Belopp per månad för '+(r.name||'raden'));
+  wrap.appendChild(am);wrap.appendChild(el('span',null,'kr'));
+  var del=el('button','del','\u00d7');del.type='button';del.setAttribute('aria-label','Ta bort '+(r.name||'raden'));
+  li.appendChild(nm);li.appendChild(wrap);li.appendChild(del);
+  return li;
+}
+function renderBudget(){
+  var host=$('#groups');host.textContent='';
+  GROUPS.forEach(function(g){
+    var sec=el('section','group');sec.setAttribute('data-group',g[0]);
+    var head=el('div','group-head');head.appendChild(el('h3',null,g[1]));
+    var s=el('span','group-sum');s.setAttribute('data-sum',g[0]);head.appendChild(s);
+    sec.appendChild(head);sec.appendChild(el('p','hint',g[2]));
+    var ul=el('ul','rows');state[g[0]].forEach(function(r){ul.appendChild(rowEl(g[0],r,g[4]));});
+    sec.appendChild(ul);
+    var add=el('button','add',g[3]);add.type='button';add.setAttribute('data-add',g[0]);
+    sec.appendChild(add);
+    host.appendChild(sec);
+  });
+  renderSummary();
+}
+
+var groupsHost=$('#groups');
+groupsHost.addEventListener('input',function(ev){
+  var t=ev.target,li=t.closest('li[data-id]'),sec=t.closest('[data-group]');
+  if(!li||!sec)return;
+  var key=sec.getAttribute('data-group'),r=state[key].find(function(x){return x.id===li.getAttribute('data-id');});
+  if(!r)return;
+  if(t.classList.contains('nm'))r.name=t.value.slice(0,40);
+  else if(t.classList.contains('am'))r.amount=num(t.value);
+  renderSummary();scheduleSave();
+});
+groupsHost.addEventListener('click',function(ev){
+  var add=ev.target.closest('[data-add]');
+  if(add){
+    var key=add.getAttribute('data-add'),r=row('');
+    if(key==='envelopes'){var lastC=state.envelopes.length?state.envelopes[state.envelopes.length-1].color:-1;r.color=(lastC+1)%NCOL;}
+    state[key].push(r);renderBudget();scheduleSave();
+    var inp=groupsHost.querySelector('li[data-id="'+r.id+'"] .nm');if(inp)inp.focus();
+    return;
+  }
+  var del=ev.target.closest('.del');
+  if(del){
+    var li=del.closest('li[data-id]'),sec=del.closest('[data-group]');if(!li||!sec)return;
+    var k=sec.getAttribute('data-group');
+    state[k]=state[k].filter(function(x){return x.id!==li.getAttribute('data-id');});
+    renderBudget();scheduleSave();
+    var btn=groupsHost.querySelector('[data-add="'+k+'"]');if(btn)btn.focus();
+  }
+});
+
+var resetArm=null;
+$('#resetBtn').addEventListener('click',function(){
+  var b=this;
+  if(!resetArm){
+    b.textContent='Tryck igen för att radera allt';b.classList.add('armed');
+    resetArm=setTimeout(function(){resetArm=null;b.textContent='Börja om från början';b.classList.remove('armed');},4000);
+    return;
+  }
+  clearTimeout(resetArm);resetArm=null;b.textContent='Börja om från början';b.classList.remove('armed');
+  state=defaults();viewYM=ymOf(new Date());scheduleSave();renderAll();toast('Allt är nollställt');
+});
+
+$('#envGrid').addEventListener('click',function(ev){
+  var b=ev.target.closest('[data-env]');if(b)openBuy(b.getAttribute('data-env'));
+});
+$('#buysHost').addEventListener('click',function(ev){
+  var b=ev.target.closest('[data-del-buy]');if(!b)return;
+  var id=b.getAttribute('data-del-buy');
+  state.purchases=state.purchases.filter(function(p){return p.id!==id;});
+  scheduleSave();renderEnvelopes();toast('Köpet är borttaget');
+});
+function shiftMonth(d){var x=ymDate(viewYM);x.setMonth(x.getMonth()+d);viewYM=ymOf(x);renderEnvelopes();}
+$('#prevMonth').addEventListener('click',function(){shiftMonth(-1);});
+$('#nextMonth').addEventListener('click',function(){shiftMonth(1);});
+
+var dlg=$('#buyDialog');
+function openBuy(envId){
+  if(!state.envelopes.length){toast('Skapa ett kuvert under Budget först');setTab('budget');return;}
+  var sel=$('#buyEnv');sel.textContent='';
+  state.envelopes.forEach(function(e){var o=el('option',null,e.name||'Namnlöst kuvert');o.value=e.id;sel.appendChild(o);});
+  if(envId)sel.value=envId;
+  $('#buyAmount').value='';$('#buyNote').value='';$('#buyErr').textContent='';
+  var now=new Date();$('#buyDate').value=viewYM===ymOf(now)?dayStr(now):viewYM+'-01';
+  if(typeof dlg.showModal==='function')dlg.showModal();else dlg.setAttribute('open','');
+  setTimeout(function(){$('#buyAmount').focus();},40);
+}
+function closeBuy(){if(dlg.open){if(typeof dlg.close==='function')dlg.close();else dlg.removeAttribute('open');}}
+$('#buyCancel').addEventListener('click',closeBuy);
+dlg.addEventListener('click',function(ev){if(ev.target===dlg)closeBuy();});
+$('#buyForm').addEventListener('submit',function(ev){
+  ev.preventDefault();
+  var a=num($('#buyAmount').value);
+  if(a<=0){$('#buyErr').textContent='Skriv ett belopp större än 0 kr.';$('#buyAmount').focus();return;}
+  var d=$('#buyDate').value,date=/^\d{4}-\d{2}-\d{2}$/.test(d)?d:dayStr(new Date());
+  state.purchases.push({id:uid(),env:$('#buyEnv').value,amount:a,note:$('#buyNote').value.trim().slice(0,60),date:date});
+  closeBuy();viewYM=date.slice(0,7);scheduleSave();renderEnvelopes();toast('Köpet är sparat');
+});
+
+var TABS=['kuvert','budget','tips'];
+function setTab(t){
+  tab=t;
+  document.querySelectorAll('.tabs [role="tab"]').forEach(function(b){
+    var on=b.getAttribute('data-tab')===t;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1;
+  });
+  TABS.forEach(function(n){$('#view-'+n).hidden=n!==t;});
+  if(t==='kuvert')renderEnvelopes();
+  if(t==='budget')renderBudget();
+}
+var tabsEl=document.querySelector('.tabs');
+tabsEl.addEventListener('click',function(ev){var b=ev.target.closest('[data-tab]');if(b)setTab(b.getAttribute('data-tab'));});
+tabsEl.addEventListener('keydown',function(ev){
+  var i=TABS.indexOf(tab),n=null;
+  if(ev.key==='ArrowRight')n=TABS[(i+1)%TABS.length];
+  else if(ev.key==='ArrowLeft')n=TABS[(i+TABS.length-1)%TABS.length];
+  else if(ev.key==='Home')n=TABS[0];
+  else if(ev.key==='End')n=TABS[TABS.length-1];
+  if(n){ev.preventDefault();setTab(n);$('#tab-'+n).focus();}
+});
+
+function renderAll(){renderSummary();setTab(tab);}
+renderAll();
+
+// Sync to the viewer's private storage on their account when available.
+(function(){
+  if(!window.claude||typeof window.claude.use!=='function')return;
+  Promise.all([window.claude.use('db'),window.claude.use('user')]).then(function(r){
+    var db=r[0],user=r[1];
+    if(!db||!user)return null;
+    return user.id().then(function(id){
+      if(!id)return null;
+      var ref=db.doc('data/users/'+id+'/budget');
+      return ref.get().then(function(snap){
+        var remote=snap.exists?normalize(snap.data()):null;
+        dbRef=ref;updateFoot();
+        if(remote&&remote.updatedAt>state.updatedAt){
+          state=remote;saveLocal();renderAll();
+        }else if(state.updatedAt>(remote?remote.updatedAt:0)){
+          pushDb();
+        }
+      });
+    });
+  }).catch(function(){dbRef=null;updateFoot();});
+})();
+})();
+</script>
+</body>
+</html>
